@@ -6,6 +6,17 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 require("dotenv/config");
 
+app.set("view-engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(flash());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUnitialized: false,
+  })
+);
+
 //MIDDLEWARE
 app.use(cors());
 app.use(bodyParser.json());
